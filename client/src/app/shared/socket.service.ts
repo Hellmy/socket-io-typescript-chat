@@ -1,6 +1,7 @@
 import {Injectable} from '@angular/core';
 import {Observable} from 'rxjs/Observable';
 import {Message} from './message.model';
+import {Question} from './model/question.model';
 
 import * as socketIo from 'socket.io-client';
 
@@ -18,10 +19,13 @@ export class SocketService {
         this.socket = socketIo(SERVER_URL);
     }
 
-    public send(message: Message): void {
-        this.socket.emit('message', message);
+    public send(message: Message|Question): void {
+      this.socket.emit('message', message);
     }
-
+  public sendQuestion(question: Question): void {
+    this.socket.emit('question', question);
+  }
+  
     public get() {
         let observable = new Observable(observer => {
             this.socket.on('message', (data) => {

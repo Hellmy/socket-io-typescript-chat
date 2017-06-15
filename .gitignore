@@ -1,7 +1,7 @@
 .idea/
+node_modules
 
 ## server
-/server/node_modules
 /server/dist
 /server/npm-debug.log
 
@@ -9,9 +9,6 @@
 # compiled output
 /client/dist
 /client/tmp
-
-# dependencies
-/client/node_modules
 
 # misc
 /client/npm-debug.log
