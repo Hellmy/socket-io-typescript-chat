@@ -1,20 +1,7 @@
-A socket.io Chat Example Using TypeScript
-=========================================
+This branch is already adapted to another new application without own repository. This will be created later where I will also update the README! Currently this is work in progress.
 
-This repository contains server & client side code using `TypeScript` language
+The original description about starting etc. is still valid.
 
-## Slides
-Read the slides I presented with this project: [TypeScript on the Web: Real Time Applications with Node.js and Angular 2](https://luixaviles.github.io/socket-io-typescript-chat)
-
-## Demo Chat application online
-Client application was written using Angular 2 + [Material Components](https://material.angular.io/).
-You can open several browser windows to start the communication between different clients and socket.io server.
-Try the [Live Demo Client](https://goo.gl/BpGvpD)
-
-# Support this project
-- Star GitHub repository :star:
-- Create pull requests, submit bugs or suggest new features
-- Follow updates on [Twitter](https://twitter.com/luixaviles)
 
 # Running Server and Client locally
 ## Prerequisites
