@@ -5,7 +5,7 @@ import {Question} from './model/question.model';
 
 import * as socketIo from 'socket.io-client';
 
-let SERVER_URL = 'http://localhost:8080';
+let SERVER_URL = 'http://localhost:8088';
 
 @Injectable()
 export class SocketService {

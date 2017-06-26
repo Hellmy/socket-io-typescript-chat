@@ -29,10 +29,10 @@ To run server locally, just install dependencies and run `gulp` task to create a
 
 ```bash
 $ cd server
-$ npm install -g gulp-cli
-$ npm install
+??$ npm install -g gulp-cli
+$ yarn 
 $ gulp build
-$ npm start
+$ yarn start
 ```
 
 
