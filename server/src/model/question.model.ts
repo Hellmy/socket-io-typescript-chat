@@ -1,6 +1,4 @@
 import * as mongoose from 'mongoose';
-export class Question extends mongoose.Schema{
-  constructor(public question: string, public answers: string[]) {
-    super();
-  }
+import {Question} from './shared/question';
+export interface QuestionModel extends Question, mongoose.Document{
 }

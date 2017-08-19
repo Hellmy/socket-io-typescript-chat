@@ -11,6 +11,7 @@ First, ensure you have the following installed:
 1. NodeJS - Download and Install latest version of Node: [NodeJS](http://http://nodejs.org)
 2. Git - Download and Install [Git](http://git-scm.com)
 3. Angular CLI - Install Command Line Interface for Angular [https://cli.angular.io/](https://cli.angular.io/)
+4. Mongo-DB
 
 After that, use `Git bash` to run all commands if you are on Windows platform.
 
@@ -24,6 +25,9 @@ $ cd socket-io-typescript-chat
 ```
 
 ## Run Server
+
+You have to start Mongo-DB first:
+sudo service mongod start
 
 To run server locally, just install dependencies and run `gulp` task to create a build:
 

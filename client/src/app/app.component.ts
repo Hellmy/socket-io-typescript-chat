@@ -2,7 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {Message} from './shared/message.model';
 import {User} from './shared/user.model';
 import {SocketService} from './shared/socket.service';
-import {Question} from './shared/model/question.model';
+import {Question} from './model/shared/question';
 
 let AVATAR_URL = 'http://avatar.3sd.me/80';
 
@@ -41,10 +41,18 @@ export class AppComponent implements OnInit {
     }
 
     sendMessage(): void {
-        this.socketService.send(new Message(this.user, this.messageContent));
-      this.socketService.sendQuestion(new Question('Frage', ['antwort1', 'antwort2']));
+      this.socketService.send(new Message(this.user, this.messageContent));
 
-       this.socketService.send(new Question('Frage', ['antwort1', 'antwort2']));
+      let question = {
+	question: 'Frage',
+	answer: [
+	  'antwort1',
+	  'antwort2'
+	]
+      };
+      this.socketService.sendQuestion(question);
+
+       this.socketService.send(question);
         this.messageContent = null;
     }
 }

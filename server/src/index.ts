@@ -3,7 +3,8 @@ import * as http from "http";
 import * as socketIo from "socket.io";
 
 import { Message } from "./model";
-import { Question } from "./model";
+import { QuestionModel } from "./model";
+import { Question } from "./model/shared/question";
 import * as mongoose from 'mongoose';
 
 class Server {
@@ -14,6 +15,7 @@ class Server {
   private port: number;
   private conn: any;
   private question: any;
+  private questionModel: any;
 
     public static bootstrap(): Server {
         return new Server();
@@ -32,8 +34,11 @@ class Server {
 	// we're connected!i
 	console.log('connected');
       });
-      //this.question = this.conn.model('Question', Question);
-      // this.question = mongoose.model('Question', Question);
+      this.questionSchema = new mongoose.Schema({
+	question: String,
+	answer: [String]
+      });
+      this.question = mongoose.model('Question', this.questionSchema);
       
     }
 
@@ -67,7 +72,9 @@ class Server {
             socket.on('question', (question: Question) => {
               console.log('foolo');
 	      console.log('foo: %s', JSON.stringify(question));
-	      this.conn.save(question);
+	      //question.save();
+	      let foo = new this.question(question);
+	      foo.save();
             });
 
             socket.on('disconnect', () => {
