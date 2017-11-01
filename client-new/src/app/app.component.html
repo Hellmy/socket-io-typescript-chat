@@ -8,7 +8,7 @@
 
 <mat-icon>home</mat-icon>
 
-<button mat-raised-button>I'm a button</button>
+<button mat-raised-button (click)="foo()">I'm a button</button>
 
 <mat-select placeholder="I'm a select" [(ngModel)]="selectedValue">
   <mat-option *ngFor="let item of [{value:'0', view:'zero'}, {value:'1', view:'one'}, {value:'2', view:'Two'}]"

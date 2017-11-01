@@ -6,10 +6,13 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatInputModule, MatButtonModule, MatSelectModule, MatIconModule } from '@angular/material';
 
 import { AppComponent } from './app.component';
+import { SocketService } from './socket.service';
+import { QuestionComponent } from './question/question.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    QuestionComponent
   ],
   imports: [
     BrowserModule,
@@ -21,7 +24,7 @@ import { AppComponent } from './app.component';
     MatSelectModule,
     MatIconModule
   ],
-  providers: [],
+  providers: [SocketService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
