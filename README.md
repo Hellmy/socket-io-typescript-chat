@@ -48,8 +48,8 @@ Open other command line window and run following commands:
 
 ```bash
 $ cd client
-$ npm install
-$ ng serve
+$ yarn
+$ yarn start
 ```
 
 Now open your browser in following URL: [http://localhost:4200](http://localhost:4200/)

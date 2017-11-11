@@ -1,12 +1,31 @@
 @import '~https://fonts.googleapis.com/icon?family=Material+Icons';
 @import '~https://fonts.googleapis.com/icon?family=Roboto';
+@import '~@angular/material/prebuilt-themes/deeppurple-amber.css';
 
-.chat-input {
-    padding-top: 20px;
-}
-
-.chat-container {
-    min-height: 350px;
-    max-height: 350px;
-    overflow-y: auto;
-}
+.example-sidenav-fab-container {
+    width: 500px;
+    height: 300px;
+    border: 1px solid rgba(0, 0, 0, 0.5);
+  }
+  
+  .example-sidenav-fab-container mat-sidenav {
+    max-width: 200px;
+  }
+  
+  .example-sidenav-fab-container .mat-sidenav-content,
+  .example-sidenav-fab-container mat-sidenav {
+    display: flex;
+    overflow: visible;
+  }
+  
+  .example-scrolling-content {
+    overflow: auto;
+    height: 100%;
+  }
+  
+  .example-fab.mat-mini-fab {
+    position: absolute;
+    right: 20px;
+    bottom: 10px;
+  }
+  

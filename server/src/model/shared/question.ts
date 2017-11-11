@@ -1,5 +1,4 @@
 export interface Question {
   question: string;
-  answer: string[];
+  answers: string[];
 }
-

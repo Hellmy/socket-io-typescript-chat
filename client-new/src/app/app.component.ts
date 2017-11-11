@@ -26,7 +26,7 @@ private initIoConnection(): void {
   foo() {
     let question = {
       question: 'Frage',
-      answer: [
+      answers: [
         'antwort1',
         'antwort2'
       ]

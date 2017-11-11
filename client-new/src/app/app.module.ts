@@ -7,12 +7,16 @@ import { MatInputModule, MatButtonModule, MatSelectModule, MatIconModule } from 
 
 import { AppComponent } from './app.component';
 import { SocketService } from './socket.service';
-import { QuestionComponent } from './question/question.component';
+import { QuestionComponent } from './components/question/question.component';
+import { AnswerComponent } from './components/answer/answer.component';
+import { QuestionAdminDialogComponent } from './dialogs/question-admin-dialog/question-admin-dialog.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    QuestionComponent
+    QuestionComponent,
+    AnswerComponent,
+    QuestionAdminDialogComponent
   ],
   imports: [
     BrowserModule,
