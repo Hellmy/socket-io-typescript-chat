@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-question',
@@ -7,6 +8,15 @@ import { Component, OnInit } from '@angular/core';
   inputs: ['question']
 })
 export class QuestionComponent implements OnInit {
+
+  @Input()
+  answer: string;
+
+  @Output()
+  answerChange = new EventEmitter();
+
+  @Input()
+  parent: FormGroup;
 
   constructor() { }
 

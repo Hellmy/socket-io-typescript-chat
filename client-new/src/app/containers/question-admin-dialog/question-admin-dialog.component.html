@@ -1,0 +1,6 @@
+<h1>Admin Questions</h1>
+<form [formGroup]="form">
+  <app-question [parent]="form" [(question)]="question.question"></app-question>
+  <app-answer *ngFor="let answer of question.answers" [answer]="answer" [parent]="form">
+  </app-answer>
+</form>
