@@ -1,3 +1,6 @@
-<p>
-  question-dialog works!
-</p>
+<form [formGroup]="form">
+  <app-question [parent]="form" [readonly]="true"></app-question>
+  <br/>
+  <app-answer-choice [parent]="form" [answers]="answers.value"></app-answer-choice>
+
+</form>

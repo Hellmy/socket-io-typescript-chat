@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormArray, FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-question-dialog',
@@ -7,9 +8,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class QuestionDialogComponent implements OnInit {
 
-  constructor() { }
+  form: FormGroup = this.formBuilder.group({
+    question: ['Question...'],
+    answers: this.formBuilder.array(['Answer1', 'Answer2'])
+  });
 
+  constructor(private formBuilder: FormBuilder) { }
   ngOnInit() {
+  }
+  get answers() {
+    return this.form.get('answers') as FormArray;
   }
 
 }

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Input } from '@angular/core';
 import { Answer } from '../../shared/model/answer.model';
-import { FormGroup } from '@angular/forms';
+import { FormGroup, FormArray } from '@angular/forms';
 
 @Component({
   selector: 'app-answer',
@@ -11,7 +11,7 @@ import { FormGroup } from '@angular/forms';
 export class AnswerComponent implements OnInit {
 
   @Input()
-  answer: string;
+  answers: FormArray;
 
   @Input()
   parent: FormGroup;

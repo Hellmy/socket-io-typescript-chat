@@ -1,0 +1,4 @@
+<mat-chip-list [formGroup]="parent" *ngIf="answers.length">
+  <mat-chip *ngFor="let answer of answers">{{answer}}</mat-chip>
+</mat-chip-list>
+{{answers | json}}

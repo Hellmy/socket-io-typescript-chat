@@ -5,13 +5,15 @@ import { FormGroup } from '@angular/forms';
   selector: 'app-question',
   templateUrl: './question.component.html',
   styleUrls: ['./question.component.css'],
-  inputs: ['question']
 })
 export class QuestionComponent implements OnInit {
 
   @Input()
   answer: string;
 
+  @Input()
+  readonly: boolean;
+  
   @Output()
   answerChange = new EventEmitter();
 
