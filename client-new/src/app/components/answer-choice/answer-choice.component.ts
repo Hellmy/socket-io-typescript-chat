@@ -1,5 +1,8 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { FormGroup, FormArray } from '@angular/forms';
+import { MatButtonToggleChange } from '@angular/material'
+import {AnswerChoice} from './answer-choice';
+import { Answer } from '../../shared/model/answer.model';
 
 @Component({
   selector: 'app-answer-choice',
@@ -12,11 +15,18 @@ export class AnswerChoiceComponent implements OnInit {
   parent: FormGroup;
 
   @Input()
-  answers: FormArray;
+  answers: Answer[];
+
+  @Output()
+  click: EventEmitter<AnswerChoice> = new EventEmitter();
 
   constructor() { }
 
   ngOnInit() {
+  }
+
+  change(event: MatButtonToggleChange) {
+    this.click.emit({value: event.value});
   }
 
 }

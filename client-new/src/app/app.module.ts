@@ -5,6 +5,7 @@ import { HttpModule } from '@angular/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatInputModule, MatButtonModule, MatSelectModule, MatIconModule } from '@angular/material';
 import {MatChipsModule} from '@angular/material/chips';
+import {MatButtonToggleModule} from '@angular/material/button-toggle';
 
 import { AppComponent } from './app.component';
 import { SocketService } from './socket.service';
@@ -32,7 +33,8 @@ import { AnswerChoiceComponent } from './components/answer-choice/answer-choice.
     MatButtonModule,
     MatSelectModule,
     MatIconModule,
-    MatChipsModule
+    MatChipsModule,
+    MatButtonToggleModule 
   ],
   providers: [SocketService],
   bootstrap: [AppComponent]

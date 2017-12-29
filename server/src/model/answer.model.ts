@@ -1,4 +1,8 @@
 export class Answer {
-  constructor(answer: string) {
+
+  selected: boolean = false;
+
+  constructor(public answer: string) {
+
   }
 }
