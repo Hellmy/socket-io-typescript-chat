@@ -1,11 +1,12 @@
-import {Injectable} from '@angular/core';
-import {Observable} from 'rxjs/Observable';
-import {Message} from './shared/model/message.model';
-import {Question} from './model/shared/question';
+import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs/Observable';
+import { Message } from './shared/model/message.model';
+import { Question } from './shared/model/question';
+
 
 import * as socketIo from 'socket.io-client';
 
-let SERVER_URL = 'http://localhost:8088';
+const SERVER_URL = 'http://localhost:8088';
 
 @Injectable()
 export class SocketService {
@@ -19,16 +20,32 @@ export class SocketService {
         this.socket = socketIo(SERVER_URL);
     }
 
-    public send(message: Message|Question): void {
-      this.socket.emit('message', message);
+    public send(message: Message | Question): void {
+        this.socket.emit('message', message);
     }
-  public sendQuestion(question: Question): void {
-    this.socket.emit('question', question);
-  }
-  
+    public sendQuestion(question: Question): void {
+        this.socket.emit('question', question);
+    }
+
+    public finishQuestion(): void {
+        this.socket.emit('finishQuestion');
+    }
+
     public get() {
-        let observable = new Observable(observer => {
+        const observable = new Observable(observer => {
             this.socket.on('message', (data) => {
+                observer.next(data);
+            });
+            return () => {
+                this.socket.disconnect();
+            };
+        });
+        return observable;
+    }
+
+    public listenFinish() {
+        const observable = new Observable(observer => {
+            this.socket.on('finishQuestion', (data) => {
                 observer.next(data);
             });
             return () => {

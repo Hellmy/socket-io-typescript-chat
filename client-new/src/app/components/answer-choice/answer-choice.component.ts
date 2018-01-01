@@ -18,7 +18,7 @@ export class AnswerChoiceComponent implements OnInit {
   answers: Answer[];
 
   @Output()
-  click: EventEmitter<AnswerChoice> = new EventEmitter();
+  toggleAnswer: EventEmitter<AnswerChoice> = new EventEmitter();
 
   constructor() { }
 
@@ -26,7 +26,7 @@ export class AnswerChoiceComponent implements OnInit {
   }
 
   change(event: MatButtonToggleChange) {
-    this.click.emit({value: event.value});
+    this.toggleAnswer.emit({value: event.value});
   }
 
 }

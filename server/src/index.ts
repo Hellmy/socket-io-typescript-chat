@@ -4,7 +4,7 @@ import * as socketIo from "socket.io";
 
 import { Message } from "./model";
 import { QuestionModel } from "./model";
-import { Question } from "./model/shared/question";
+import { Question } from "./model/question";
 import * as mongoose from 'mongoose';
 
 class Server {
@@ -12,10 +12,10 @@ class Server {
     public app: any;
     private server: any;
     private io: any;
-  private port: number;
-  private conn: any;
-  private question: any;
-  private questionModel: any;
+    private port: number;
+    private conn: any;
+    private question: any;
+    private questionModel: any;
 
     public static bootstrap(): Server {
         return new Server();
@@ -26,20 +26,20 @@ class Server {
         this.config();
         this.createServer();
         this.sockets();
-      this.listen();
-      this.conn = mongoose.connect('mongodb://localhost/yabeng');
-      let db = mongoose.connection;
-      db.on('error', console.error.bind(console, 'connection error:'));
-      db.once('open', function() {
-	// we're connected!i
-	console.log('connected');
-      });
-      this.questionSchema = new mongoose.Schema({
-	question: String,
-	answer: [String]
-      });
-      this.question = mongoose.model('Question', this.questionSchema);
-      
+        this.listen();
+        this.conn = mongoose.connect('mongodb://localhost/yabeng');
+        let db = mongoose.connection;
+        db.on('error', console.error.bind(console, 'connection error:'));
+        db.once('open', function () {
+            // we're connected!i
+            console.log('connected');
+        });
+        this.questionSchema = new mongoose.Schema({
+            question: String,
+            answer: [String]
+        });
+        this.question = mongoose.model('Question', this.questionSchema);
+
     }
 
     private createApp(): void {
@@ -65,17 +65,23 @@ class Server {
 
         this.io.on('connect', (socket: any) => {
             console.log('Connected client on port %s.', this.port);
-            socket.on('message', (m: Message|Question) => {
+            socket.on('message', (m: Message | Question) => {
                 console.log('[server](message): %s', JSON.stringify(m));
                 this.io.emit('message', m);
             });
             socket.on('question', (question: Question) => {
-              console.log('foolo');
-	      console.log('foo: %s', JSON.stringify(question));
-	      //question.save();
-	      let foo = new this.question(question);
-	      foo.save();
+                console.log('foolo');
+                console.log('foo: %s', JSON.stringify(question));
+                //question.save();
+                let foo = new this.question(question);
+                this.io.emit('message', question);
+                foo.save();
             });
+
+            socket.on('finishQuestion', () => {
+                console.log('Question finished!');
+                this.io.emit('finishQuestion');
+            })
 
             socket.on('disconnect', () => {
                 console.log('Client disconnected');

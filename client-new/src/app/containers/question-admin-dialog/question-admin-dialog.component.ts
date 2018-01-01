@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import {Question} from '../../model/shared/question'
 import { FormBuilder, Validators, FormArray } from '@angular/forms';
 import { FormGroup } from '@angular/forms';
+import { Question } from '../../shared/model/question';
+import { Answer } from '../../shared/model/answer.model';
 
 @Component({
   selector: 'app-question-admin-dialog',
@@ -12,15 +13,21 @@ export class QuestionAdminDialogComponent implements OnInit {
 
   private question: Question;
 
-  form: FormGroup = this.fb.group({
+  form: FormGroup = this.formBuilder.group({
     question: ['Question...', Validators.required],
-    answers: this.fb.array(['Answer...'])
+    answers: this.formBuilder.array(['Answer...'])
   });
 
-  constructor(private fb: FormBuilder) { }
+  constructor(private formBuilder: FormBuilder) { }
 
   ngOnInit() {
 
+  }
+
+  private initAnswers(answers: Answer[]) {
+    const answerFGs = answers.map(answer => this.formBuilder.group(answer));
+    const answerFormArray = this.formBuilder.array(answerFGs);
+    this.form.setControl('answers', answerFormArray);
   }
 
   get answers() {

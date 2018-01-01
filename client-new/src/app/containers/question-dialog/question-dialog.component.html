@@ -1,15 +1,5 @@
 <form [formGroup]="form">
   <app-question [parent]="form" [readonly]="true"></app-question>
   <br/>
-  <app-answer-choice [parent]="form" [answers]="answers" (click)="clickAnswer($event)"></app-answer-choice>
-  <div formArrayName="answers">
-    <!-- <mat-button-toggle-group multiple>
-        <mat-button-toggle *ngFor="let answer of answers.controls" [value]="answer" [checked]="true" (change)="change($event)">{{answer}}</mat-button-toggle>
-      </mat-button-toggle-group> -->
-    <div *ngFor="let answer of answers.controls; let i=index" [formGroupName]="i">
-      {{answer}}
-      <input class="form-control" formControlName="answer">
-    </div>
-  </div>
-
+  <app-answer-choice [parent]="form" [answers]="answers" (toggleAnswer)="toggleAnswer($event)"></app-answer-choice>
 </form>

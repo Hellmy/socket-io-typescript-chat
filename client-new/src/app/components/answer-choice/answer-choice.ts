@@ -1,3 +1,5 @@
+import { Answer } from '../../shared/model/answer.model';
+
 export interface AnswerChoice {
-    value: string;
+    value: Answer;
 }
