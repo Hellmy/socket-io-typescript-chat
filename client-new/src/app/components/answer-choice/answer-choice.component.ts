@@ -1,7 +1,7 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { FormGroup, FormArray } from '@angular/forms';
+import { FormGroup, FormArray, FormControl } from '@angular/forms';
 import { MatButtonToggleChange } from '@angular/material';
-import {AnswerChoice} from './answer-choice';
+import { AnswerChoice } from './answer-choice';
 import { Answer } from '../../shared/model/answer.model';
 
 @Component({
@@ -41,12 +41,14 @@ export class AnswerChoiceComponent implements OnInit {
   }
 
   change(event: MatButtonToggleChange) {
-    this.toggleAnswer.emit({value: event.value});
+    this.toggleAnswer.emit({ value: event.value });
   }
 
-  toggleChoice(event: any, choice: any) {
+  toggleChoice(choiceControl: FormControl) {
     // only with patchValue the validators are called...
-    this.formArray.controls.filter(control => control.value === choice).map(control => control.patchValue({selected: !control.value.selected}));
+    choiceControl.patchValue({
+      selected: !choiceControl.value.selected
+    });
   }
 
 }
