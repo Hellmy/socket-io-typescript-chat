@@ -1,6 +1,6 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { FormGroup, FormArray } from '@angular/forms';
-import { MatButtonToggleChange } from '@angular/material'
+import { MatButtonToggleChange } from '@angular/material';
 import {AnswerChoice} from './answer-choice';
 import { Answer } from '../../shared/model/answer.model';
 
@@ -15,6 +15,12 @@ export class AnswerChoiceComponent implements OnInit {
   parent: FormGroup;
 
   @Input()
+  arrayName: string;
+
+  @Input()
+  parentArray: FormArray;
+
+  @Input()
   answers: Answer[];
 
   @Output()
@@ -23,6 +29,15 @@ export class AnswerChoiceComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
+    console.log(this.formArray);
+  }
+
+  printFormArray() {
+    console.log(this.formArray);
+  }
+
+  get formArray(): FormArray {
+    return this.parent.get(this.arrayName) as FormArray;
   }
 
   change(event: MatButtonToggleChange) {

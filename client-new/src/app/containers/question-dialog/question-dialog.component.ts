@@ -1,6 +1,6 @@
 import { Component, OnInit, OnChanges, OnDestroy } from '@angular/core';
 import { FormBuilder, FormArray, FormGroup } from '@angular/forms';
-import { AnswerChoice } from '../../components/answer-choice/answer-choice';
+import { AnswerChoice, ChoiceFormElement } from '../../components/answer-choice/answer-choice';
 import { Answer } from '../../shared/model/answer.model';
 import { SocketService } from '../../socket.service';
 
@@ -31,10 +31,20 @@ export class QuestionDialogComponent implements OnInit, OnChanges, OnDestroy {
 
   ngOnInit() {
     this.initIoConnection();
+    this.initAnswers(this.answers);
   }
 
   ngOnDestroy() {
     this.ioConnection.unsubscribe();
+  }
+
+  private initAnswers(answers: Answer[]) {
+    const answerFGs = answers.map(answer => this.formBuilder.group(<ChoiceFormElement>{
+      name: answer.answer,
+      selected: answer.selected
+    }));
+    const answerFormArray = this.formBuilder.array(answerFGs);
+    this.form.setControl('answers', answerFormArray);
   }
 
   private initIoConnection(): void {

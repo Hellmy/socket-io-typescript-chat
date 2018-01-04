@@ -1,5 +1,5 @@
 <form [formGroup]="form">
   <app-question [parent]="form" [readonly]="true"></app-question>
   <br/>
-  <app-answer-choice [parent]="form" [answers]="answers" (toggleAnswer)="toggleAnswer($event)"></app-answer-choice>
+  <app-answer-choice [parent]="form" [answers]="answers" (toggleAnswer)="toggleAnswer($event)" [arrayName]="'answers'"></app-answer-choice>
 </form>
