@@ -1,6 +1,5 @@
 import { Component, OnInit, OnChanges, OnDestroy } from '@angular/core';
 import { FormBuilder, FormArray, FormGroup, Validator, Validators, AbstractControl } from '@angular/forms';
-import { AnswerChoice, ChoiceFormElement } from '../../components/answer-choice/answer-choice';
 import { Answer } from '../../shared/model/answer.model';
 import { SocketService } from '../../socket.service';
 import { ValidateSelection } from './validate-selection';
@@ -68,9 +67,5 @@ export class QuestionDialogComponent implements OnInit, OnChanges, OnDestroy {
 
   foo() {
     this.form.updateValueAndValidity();
-  }
-
-  toggleAnswer(event: AnswerChoice) {
-    this.answers.filter(answer => answer.answer === event.value.answer).map(answer => answer.selected = !answer.selected);
   }
 }

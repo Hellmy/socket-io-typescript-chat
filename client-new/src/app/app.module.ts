@@ -13,7 +13,7 @@ import { QuestionComponent } from './components/question/question.component';
 import { AnswerComponent } from './components/answer/answer.component';
 import { QuestionAdminDialogComponent } from './containers/question-admin-dialog/question-admin-dialog.component';
 import { QuestionDialogComponent } from './containers/question-dialog/question-dialog.component';
-import { AnswerChoiceComponent } from './components/answer-choice/answer-choice.component';
+import { MultiChoiceComponent } from './components/multi-choice/multi-choice.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +22,7 @@ import { AnswerChoiceComponent } from './components/answer-choice/answer-choice.
     AnswerComponent,
     QuestionAdminDialogComponent,
     QuestionDialogComponent,
-    AnswerChoiceComponent
+    MultiChoiceComponent
   ],
   imports: [
     BrowserModule,

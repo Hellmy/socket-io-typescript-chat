@@ -1,7 +1,7 @@
 <form [formGroup]="form">
   <app-question [parent]="form" [readonly]="true"></app-question>
   <br/>
-  <app-answer-choice [parent]="form" [answers]="answers" (toggleAnswer)="toggleAnswer($event)" [arrayName]="'answers'"></app-answer-choice>
+  <app-multi-choice [parent]="form" [arrayName]="'answers'"></app-multi-choice>
   <button (click)="foo()">print Form</button>
   error: {{form.get('answers').errors | json}}
 </form>
