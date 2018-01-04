@@ -10,7 +10,7 @@
   </div> -->
   <br/>
   <mat-button-toggle-group multiple>
-    <mat-button-toggle *ngFor="let answer of formArray.value" [value]="answer" [checked]="answer.selected" (change)="answer.selected = !answer.selected">{{answer.name}}</mat-button-toggle>
+    <mat-button-toggle *ngFor="let choice of formArray.value" [value]="choice" [checked]="choice.selected" (change)="toggleChoice($event, choice)">{{choice.name}}</mat-button-toggle>
   </mat-button-toggle-group>
 </div>
 <button (click)="printFormArray()">print</button>

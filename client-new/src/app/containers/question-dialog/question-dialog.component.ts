@@ -1,8 +1,9 @@
 import { Component, OnInit, OnChanges, OnDestroy } from '@angular/core';
-import { FormBuilder, FormArray, FormGroup } from '@angular/forms';
+import { FormBuilder, FormArray, FormGroup, Validator, Validators, AbstractControl } from '@angular/forms';
 import { AnswerChoice, ChoiceFormElement } from '../../components/answer-choice/answer-choice';
 import { Answer } from '../../shared/model/answer.model';
 import { SocketService } from '../../socket.service';
+import { ValidateSelection } from './validate-selection';
 
 @Component({
   selector: 'app-question-dialog',
@@ -39,11 +40,13 @@ export class QuestionDialogComponent implements OnInit, OnChanges, OnDestroy {
   }
 
   private initAnswers(answers: Answer[]) {
-    const answerFGs = answers.map(answer => this.formBuilder.group(<ChoiceFormElement>{
-      name: answer.answer,
-      selected: answer.selected
+    const answerFGs = answers.map(answer => this.formBuilder.group({
+      name: [answer.answer, ValidateSelection],
+      selected: [answer.selected, ValidateSelection]
+    }, {
+      Validator: ValidateSelection
     }));
-    const answerFormArray = this.formBuilder.array(answerFGs);
+    const answerFormArray = this.formBuilder.array(answerFGs, ValidateSelection);
     this.form.setControl('answers', answerFormArray);
   }
 
@@ -61,6 +64,10 @@ export class QuestionDialogComponent implements OnInit, OnChanges, OnDestroy {
 
   get formAnswers(): FormArray {
     return this.form.get('answers') as FormArray;
+  }
+
+  foo() {
+    this.form.updateValueAndValidity();
   }
 
   toggleAnswer(event: AnswerChoice) {

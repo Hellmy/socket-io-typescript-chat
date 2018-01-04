@@ -2,4 +2,6 @@
   <app-question [parent]="form" [readonly]="true"></app-question>
   <br/>
   <app-answer-choice [parent]="form" [answers]="answers" (toggleAnswer)="toggleAnswer($event)" [arrayName]="'answers'"></app-answer-choice>
+  <button (click)="foo()">print Form</button>
+  error: {{form.get('answers').errors | json}}
 </form>

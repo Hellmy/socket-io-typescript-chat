@@ -44,4 +44,9 @@ export class AnswerChoiceComponent implements OnInit {
     this.toggleAnswer.emit({value: event.value});
   }
 
+  toggleChoice(event: any, choice: any) {
+    // only with patchValue the validators are called...
+    this.formArray.controls.filter(control => control.value === choice).map(control => control.patchValue({selected: !control.value.selected}));
+  }
+
 }
