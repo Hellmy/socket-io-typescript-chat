@@ -1,58 +1,46 @@
-import {Component, OnInit} from '@angular/core';
-import {Message} from './shared/message.model';
-import {User} from './shared/user.model';
-import {SocketService} from './shared/socket.service';
-import {Question} from './model/shared/question';
-
-let AVATAR_URL = 'http://avatar.3sd.me/80';
+import { Component, OnInit } from '@angular/core';
+import { SocketService } from './socket.service';
+import { Answer } from './shared/model/answer.model';
 
 @Component({
-    selector: 'app-root',
-    templateUrl: './app.component.html',
-    styleUrls: ['./app.component.css'],
-    providers: [SocketService]
+  selector: 'app-root',
+  templateUrl: './app.component.html',
+  styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit {
-    private user: User;
-    private messages: Message[];
-    private messageContent: string;
-    private ioConnection: any;
+  title = 'app';
+  private ioConnection: any;
 
-    constructor(private socketService: SocketService) {}
+  constructor(private socketService: SocketService) {
+  }
 
-    ngOnInit(): void {
-        this.initModel();
-        this.initIoConnection();
-    }
+  ngOnInit(): void {
+    this.initIoConnection();
+  }
 
-    private initModel(): void {
-        this.user = new User(this.getRandomUsername(), AVATAR_URL);
-        this.messages = [];
-    }
 
-    private initIoConnection(): void {
-        this.ioConnection = this.socketService.get().subscribe((message: Message) => {
-            this.messages.push(message);
-        });
-    }
+  private initIoConnection(): void {
+    this.ioConnection = this.socketService.get().subscribe((message: any) => {
+      console.log(message);
+    });
+  }
 
-    private getRandomUsername(): string {
-        return 'User-' + (Math.floor(Math.random() * (10000 - 0)) + 1);
-    }
+  foo() {
+    const question = {
+      question: 'Frage',
+      answers: [
+        new Answer('antwort1'),
+        new Answer('antwort2')
+      ]
+    };
+    this.socketService.sendQuestion(question);
+  }
 
-    sendMessage(): void {
-      this.socketService.send(new Message(this.user, this.messageContent));
+  pingo() {
+    this.foo();
+  }
 
-      let question = {
-	question: 'Frage',
-	answer: [
-	  'antwort1',
-	  'antwort2'
-	]
-      };
-      this.socketService.sendQuestion(question);
-
-       this.socketService.send(question);
-        this.messageContent = null;
-    }
+  finish() {
+    this.socketService.finishQuestion();
+  }
 }

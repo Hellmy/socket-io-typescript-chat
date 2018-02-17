@@ -8,7 +8,7 @@ import { Question } from "./model/question";
 import * as mongoose from 'mongoose';
 
 class Server {
-    public static readonly PORT = 8088;
+    public static readonly PORT = 8080;
     public app: any;
     private server: any;
     private io: any;
@@ -27,7 +27,7 @@ class Server {
         this.createServer();
         this.sockets();
         this.listen();
-        this.conn = mongoose.connect('mongodb://localhost/yabeng');
+        this.conn = mongoose.connect('mongodb://mongodb/yabeng');
         let db = mongoose.connection;
         db.on('error', console.error.bind(console, 'connection error:'));
         db.once('open', function () {

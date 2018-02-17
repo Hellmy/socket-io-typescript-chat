@@ -1,3 +1,14 @@
+# Next Steps
+- server should use ./model
+- Show question - enterd on server
+- answer question
+
+## MVP
+- show questions
+- answer questions
+
+# General
+
 This branch is already adapted to another new application without own repository. This will be created later where I will also update the README! Currently this is work in progress.
 
 The original description about starting etc. is still valid.

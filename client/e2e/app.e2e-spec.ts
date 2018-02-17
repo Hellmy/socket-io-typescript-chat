@@ -1,14 +1,14 @@
-import { AngularChatPage } from './app.po';
+import { AppPage } from './app.po';
 
-describe('angular-chat App', function() {
-  let page: AngularChatPage;
+describe('client-new App', () => {
+  let page: AppPage;
 
   beforeEach(() => {
-    page = new AngularChatPage();
+    page = new AppPage();
   });
 
-  it('should display message saying app works', () => {
+  it('should display welcome message', () => {
     page.navigateTo();
-    expect(page.getParagraphText()).toEqual('app works!');
+    expect(page.getParagraphText()).toEqual('Welcome to app!');
   });
 });
